@@ -23,7 +23,10 @@ late String phone;
 
 class _RegistrationPageState extends State<RegistrationPage> {
   void validateForm() {
-    if (username.length != 0 && password.length > 5) {
+    if (username.length != 0 &&
+        password.length > 5 &&
+        phone.length != 10 &&
+        (role == 'Rider' || (role == 'Driver' && public_key_driver != ''))) {
       formCompleted = true;
     } else {
       formCompleted = false;
@@ -107,6 +110,71 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   hintText: 'Minimum 6 characters requires'),
                             ),
                             SizedBox(height: 15.0),
+                            Column(
+                              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                ListTile(
+                                  title: const Text('Rider'),
+                                  leading: Radio(
+                                    value: "Rider",
+                                    groupValue: "Role",
+                                    onChanged: (value) {
+                                      setState(() {
+                                        role = value!;
+                                        show = false;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                ListTile(
+                                  title: const Text('Driver'),
+                                  leading: Radio(
+                                    value: "Driver",
+                                    groupValue: "Role",
+                                    onChanged: (value) {
+                                      setState(() {
+                                        role = value!;
+                                        show = true;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 15.0),
+                            if (show)
+                              Text('Public Key of Driver',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16.0)),
+                            if (show)
+                              TextField(
+                                onChanged: (val) {
+                                  password = val;
+                                  setState(() {
+                                    validateForm();
+                                  });
+                                },
+                                cursorColor: Colors.black,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                                obscureText: signupObscure,
+                                decoration: customBoxStyle.copyWith(
+                                    suffixIcon: IconButton(
+                                      icon: Icon(Icons.remove_red_eye,
+                                          color: Colors.grey),
+                                      onPressed: () {
+                                        setState(() {
+                                          signupObscure = signupObscure == true
+                                              ? false
+                                              : true;
+                                        });
+                                      },
+                                    ),
+                                    hintText: 'Minimum 6 characters requires'),
+                              ),
+                            if (show) SizedBox(height: 15.0),
                             Text('Phone Number',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -155,7 +223,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 style: ButtonStyle(
                                     backgroundColor:
                                         const MaterialStatePropertyAll<Color>(
-                                            Color.fromRGBO(255, 114, 94, 1),),
+                                      Color.fromRGBO(255, 114, 94, 1),
+                                    ),
                                     shape: MaterialStateProperty.all<
                                             RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
