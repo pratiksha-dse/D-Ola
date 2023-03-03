@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: ModalProgressHUD(
           inAsyncCall: showpinner,
-        color: Color(0xff14279B),
+        color: Color.fromRGBO(255, 114, 94, 1),
         child: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                           margin: EdgeInsets.symmetric(horizontal: 15.0),
                           child: Text('Login', style: TextStyle(fontSize: 20.0, color: Colors.white)),
                         decoration: BoxDecoration(
-                          color: Color(0xff14279B)
+                          color: Color.fromRGBO(255, 114, 94, 1),
                         ),
                         ),
                       ),
@@ -117,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                             onTap: (){
                               Navigator.pushNamed(context, '/register');
                             },
-                            child: Text('Register', style: TextStyle(color: Color(0xff14279B), fontWeight: FontWeight.bold)),
+                            child: Text('Register', style: TextStyle(color: Color.fromRGBO(255, 114, 94, 1), fontWeight: FontWeight.bold)),
                           )
                         ],
                       )

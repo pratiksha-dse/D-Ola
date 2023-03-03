@@ -15,14 +15,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color(0xffE6E6E6),
-                  Color(0xff14279B)
-                ],
-              )
+              // gradient: LinearGradient(
+              //   begin: Alignment.topCenter,
+              //   end: Alignment.bottomCenter,
+              //   colors: [
+              //     Color(0xffE6E6E6),
+              //     Color(0xff14279B)
+              //   ],
+              // )
           ),
           width: double.infinity,
           child: Column(
@@ -32,41 +32,70 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('CROWD', style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.w900, color: Colors.white)),
-                  Text('IFY', style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.w900, color: Colors.black))
+               
+                  Text("D'Ola", style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.w900, color:  Color.fromRGBO(255, 114, 94, 1),)),
+                  // Text('IFY', style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.w900, color: Colors.black))
                 ],
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.25),
-              GestureDetector(
-                onTap: (){
-                  Navigator.pushNamed(context, '/login');
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                    child: Text('Login', style: TextStyle(fontSize: 20.0)),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(50.0))
+                 Image.asset("assets/main-bg.png",width:MediaQuery.of(context).size.width*.6),
+              // SizedBox(height: MediaQuery.of(context).size.height * 0.25),
+              Center(
+                    child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Validate returns true if the form is valid, or false otherwise.
+                 Navigator.pushNamed(context, '/login');
+                    },
+                    style: ButtonStyle(
+                        backgroundColor: const MaterialStatePropertyAll<Color>(
+                            Color.fromRGBO(255, 114, 94, 1),),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ))),
+                    child: Container(
+                        padding: const EdgeInsets.all(12),
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        child: Text(
+                          'Login',
+                          style: TextStyle(
+                              fontSize: 13, fontWeight: FontWeight.w700),
+                          textAlign: TextAlign.center,
+                        )),
                   ),
-                  padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
-                  width: MediaQuery.of(context).size.width * 0.8,
-                )
-              ),
+                )),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-              GestureDetector(
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white, width: 2),
-                      borderRadius: BorderRadius.all(Radius.circular(50.0))
+             Center(
+                    child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Validate returns true if the form is valid, or false otherwise.
+                        Navigator.pushNamed(context, '/register');
+                 
+                    },
+                    style: ButtonStyle(
+                        backgroundColor: const MaterialStatePropertyAll<Color>(
+                            Color.fromRGBO(255, 114, 94, 1),),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ))),
+                    child: Container(
+                        padding: const EdgeInsets.all(12),
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        child: Text(
+                          'Register',
+                          style: TextStyle(
+                              fontSize: 13, fontWeight: FontWeight.w700),
+                          textAlign: TextAlign.center,
+                        )),
                   ),
-                    alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
-                    child: Text('Register', style: TextStyle(fontSize: 20.0, color: Colors.white))
-                ),
-                onTap: (){
-                  Navigator.pushNamed(context, '/register');
-                })
+                )),
+               
             ],
           ),
         ),

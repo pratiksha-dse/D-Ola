@@ -10,17 +10,10 @@ class HeadClipper extends StatelessWidget {
       clipper: WaveClipperTwo(flip: true),
       child: Container(
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color(0xff14279B),
-                Color(0xffE6E6E6),
-              ],
-            )
+           
         ),
         height: MediaQuery.of(context).size.height * 0.3,
-        child: Center(child: Text('TEXTIFY', style: TextStyle(fontSize: 35.0, letterSpacing: 2,color: Colors.white, fontWeight: FontWeight.w900))),
+        child: Center(child: Text("D'Ola", style: TextStyle(fontSize: 35.0, letterSpacing: 2,color: Colors.white, fontWeight: FontWeight.w900))),
       ),
     );
   }
