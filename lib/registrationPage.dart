@@ -1,3 +1,5 @@
+// import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'utils/components.dart';
@@ -13,7 +15,11 @@ class RegistrationPage extends StatefulWidget {
 
 String username = '';
 String password = '';
+String role = '';
+bool show = false;
+String public_key_driver = '';
 bool formCompleted = false;
+late String phone;
 
 class _RegistrationPageState extends State<RegistrationPage> {
   void validateForm() {
