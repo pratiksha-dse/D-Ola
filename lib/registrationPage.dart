@@ -13,17 +13,18 @@ class RegistrationPage extends StatefulWidget {
   _RegistrationPageState createState() => _RegistrationPageState();
 }
 
-String username = '';
+String email = '';
 String password = '';
 String role = '';
 bool show = false;
 String public_key_driver = '';
 bool formCompleted = false;
-late String phone;
+String phone='';
+FirebaseAuth auth = FirebaseAuth.instance;
 
 class _RegistrationPageState extends State<RegistrationPage> {
   void validateForm() {
-    if (username.length != 0 &&
+    if (email.length != 0 &&
         password.length > 5 &&
         phone.length != 10 &&
         (role == 'Rider' || (role == 'Driver' && public_key_driver != ''))) {
@@ -66,7 +67,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                     fontSize: 16.0)),
                             TextField(
                               onChanged: (val) {
-                                username = val;
+                                email = val;
                                 setState(() {
                                   validateForm();
                                 });
@@ -205,14 +206,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                       showSpinner = true;
                                     });
                                     try {
-                                      // final newUser = await _auth.createUserWithEmailAndPassword(email: username, password: password);
-                                      // if(newUser != null){
-                                      Navigator.pushNamed(
-                                          context, '/dashboard');
-                                      setState(() {
-                                        showSpinner = false;
-                                      });
-                                      // }
+                                      final newUser = await auth
+                                          .createUserWithEmailAndPassword(
+                                              email: email, password: password);
+                                      if (newUser != null) {
+                                        // Navigator.pushNamed(
+                                        //     context, '/dashboard');
+                                        setState(() {
+                                          showSpinner = false;
+                                        });
+                                      }
                                     } catch (e) {
                                       print(e);
                                     }

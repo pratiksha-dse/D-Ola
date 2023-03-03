@@ -39,6 +39,7 @@ dependencies:
   firebase_auth: ^4.2.9
   modal_progress_hud_nsn: ^0.3.0
   material: ^1.0.0+2
+  firebase_core: ^2.7.0
 
 dev_dependencies:
   flutter_test:

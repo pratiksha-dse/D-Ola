@@ -16,6 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   String username = '';
   String password = '';
   // FirebaseAuth _auth = FirebaseAuth.instance;
+  FirebaseAuth auth = FirebaseAuth.instance;
   bool showpinner = false;
   bool invalidCredentials = false;
   @override
@@ -75,14 +76,14 @@ class _LoginPageState extends State<LoginPage> {
                             showpinner = true;
                           });
                           try{
-                            // final user = await _auth.signInWithEmailAndPassword(email: username, password: password);
-                            // if (user != null) {
+                            final user = await auth.signInWithEmailAndPassword(email: username, password: password);
+                            if (user != null) {
                               setState(() {
                                 showpinner = false;
                                 invalidCredentials = false;
                               });
-                              Navigator.pushNamed(context, '/dashboard');
-                            // }
+                              // Navigator.pushNamed(context, '/dashboard');
+                            }
                           }catch(e){
                             setState(() {
                               invalidCredentials = true;
